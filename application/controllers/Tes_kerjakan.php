@@ -76,6 +76,7 @@ class Tes_kerjakan extends Tes_Controller {
                     $data['detik_total'] = $detik_total;
                     $data['detik_sisa'] = $detik_sisa;
 
+                    $data['menit_display_tombol_selesai'] = $query_tes->tes_minimal_time_submit;
                     // Mengambil menu daftar semua soal
                     $data_soal = $this->get_daftar_soal($tes_id);
 

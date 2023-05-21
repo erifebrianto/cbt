@@ -53,8 +53,10 @@
                     <?php if(!empty($tes_daftar_soal)){ echo $tes_daftar_soal; } ?>
                     <p class="help-block">Soal yang sudah dijawab akan berwarna Biru.</p>
                 </div><!-- /.box-body -->
-                <div class="box-footer">
+                <div class="box-footer" id="box-footer">
+                    <?php if(empty($menit_display_tombol_selesai)): ?>
                     <button class="btn btn-default pull-right" id="btn-hentikan">Hentikan Tes</button>
+                    <?php endif ?>
                 </div>
             </div><!-- /.box -->
         </div>
@@ -338,15 +340,26 @@
     }
 
     $(function () {
+        var detik_berjalan = <?= json_encode($detik_berjalan) ?>;
         var sisa_detik = <?php if(!empty($detik_sisa)){ echo $detik_sisa; } ?>;
+        <?php if(!empty($menit_display_tombol_selesai)): ?>
+            var menit_tampil_tombol_hentikan = <?php echo $menit_display_tombol_selesai ?>;
+            var detik_tampil_tombol_hentikan = menit_tampil_tombol_hentikan*60;
+        <?php endif ?>
         setInterval(function() {
             var sisa_menit = Math.round(sisa_detik/60);
             sisa_detik = sisa_detik-1;
+            detik_berjalan = detik_berjalan+1;
             $("#sisa-waktu").html("Sisa Waktu : "+sisa_menit+" menit");
 
             if(sisa_detik<1){
                 window.location.reload();
-            }
+            }   
+            <?php if(!empty($menit_display_tombol_selesai)): ?>
+                if(detik_berjalan >= detik_tampil_tombol_hentikan){
+                    $("#box-footer").html(`<button class="btn btn-default pull-right" id="btn-hentikan">Hentikan Tes</button>`);
+                }
+            <?php endif ?>
         }, 1000);
 
         $('#btn-sebelumnya').click(function(){
@@ -357,9 +370,10 @@
             soal_navigasi(1);
         });
 
-        $('#btn-hentikan').click(function(){
+        $(document).on("click","#btn-hentikan",function() {
             hentikan_tes();
         });
+
         /**
          * Submit form soal saat sudah menjawab
          */

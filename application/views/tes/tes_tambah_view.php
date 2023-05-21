@@ -67,6 +67,13 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">Minimal Waktu Ujian Selesai</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="minimal-waktu" id="minimal-waktu" class="form-control input-sm" placeholder="Kosongkan jika tidak diatur" />
+                                <p class="help-block">Waktu tes dalam satuan menit</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">Poin Dasar</label>
                             <div class="col-sm-9">
                                 <input type="text" name="tambah-poin" id="tambah-poin" class="form-control input-sm" value="1.00" />
@@ -260,6 +267,7 @@
                 $('#tambah-nama-lama').val(data.nama);
                 $('#tambah-deskripsi').val(data.deskripsi);
                 $('#tambah-waktu').val(data.waktu);
+                $('#minimal-waktu').val(data.waktu_minimal);
                 $('#tambah-poin').val(data.poin);
                 $('#tambah-poin-kosong').val(data.poin_kosong);
                 $('#tambah-poin-salah').val(data.poin_salah);
@@ -309,6 +317,7 @@
         $('#tambah-nama-lama').val('');
         $('#tambah-deskripsi').val('');
         $('#tambah-waktu').val('30');
+        $('#minimal-waktu').val('');
         $('#tambah-poin').val('1.00');
         $('#tambah-poin-kosong').val('0.00');
         $('#tambah-poin-salah').val('0.00');

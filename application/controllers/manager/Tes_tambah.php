@@ -28,7 +28,6 @@ class Tes_tambah extends Member_Controller {
     public function index($tes_id=null){
         $data['kode_menu'] = $this->kode_menu;
         $data['url'] = $this->url;
-
         $is_edit = 0;
         if(!empty($tes_id)){
         	$query_tes = $this->cbt_tes_model->count_by_kolom('tes_id', $tes_id)->row()->hasil;
@@ -128,6 +127,7 @@ class Tes_tambah extends Member_Controller {
             $data['tes_nama'] = $this->input->post('tambah-nama', true);
             $data['tes_detail'] = $this->input->post('tambah-deskripsi', true);
             $data['tes_duration_time'] = $this->input->post('tambah-waktu', true);
+            $data['tes_minimal_time_submit'] = $this->input->post('minimal-waktu', true);
             $data['tes_score_right'] = $this->input->post('tambah-poin', true);
             $data['tes_score_wrong'] = $this->input->post('tambah-poin-salah', true);
             $data['tes_score_unanswered'] = $this->input->post('tambah-poin-kosong', true);
@@ -355,6 +355,7 @@ class Tes_tambah extends Member_Controller {
                 $data['detail_hasil'] = $query->tes_detail_to_users;
 	            $data['token'] = $query->tes_token;
 	            $data['rentang_waktu'] = $query->tes_begin_time.' - '.$query->tes_end_time;
+                $data['waktu_minimal'] = $query->tes_minimal_time_submit;
 			}
 		}
 		echo json_encode($data);

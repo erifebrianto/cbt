@@ -4,7 +4,7 @@ class Welcome extends CI_Controller {
     
 	public function index(){
         $this->load->library('user_agent');
-		
+  
         if ($this->agent->is_browser()){
             if($this->agent->browser()=='Internet Explorer' ){
                 $this->template->display_user('blokbrowser_view', 'Browser yang didukung');

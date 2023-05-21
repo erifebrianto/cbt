@@ -1,0 +1,1 @@
+ALTER TABLE `cbt_tes` ADD `tes_minimal_time_submit` INT NULL DEFAULT NULL AFTER `tes_token`;
